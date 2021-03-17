@@ -283,7 +283,7 @@ trait ImageRepositoryTrait
 
     /**
      * @param String  $host_type
-     * @param Int     $host_id
+     * @param String  $host_id
      * @param String  $code
      * @param Any     $value
      * @param Int     $count

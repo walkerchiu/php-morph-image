@@ -9,9 +9,9 @@ class CreateWkMorphImageTable extends Migration
     public function up()
     {
         Schema::create(config('wk-core.table.morph-image.images'), function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->nullableMorphs('host');
-            $table->nullableMorphs('morph');
+            $table->uuid('id');
+            $table->nullableUuidMorphs('host');
+            $table->nullableUuidMorphs('morph');
             $table->string('filename')->nullable();
             $table->string('serial')->nullable();
             $table->string('identifier')->nullable();
@@ -25,6 +25,7 @@ class CreateWkMorphImageTable extends Migration
             $table->timestampsTz();
             $table->softDeletes();
 
+            $table->primary('id');
             $table->index('serial');
             $table->index('identifier');
             $table->index(['type', 'size']);
@@ -33,9 +34,9 @@ class CreateWkMorphImageTable extends Migration
         });
         if (!config('wk-morph-image.onoff.core-lang_core')) {
             Schema::create(config('wk-core.table.morph-image.images_lang'), function (Blueprint $table) {
-                $table->bigIncrements('id');
-                $table->morphs('morph');
-                $table->unsignedBigInteger('user_id')->nullable();
+                $table->uuid('id');
+                $table->nullableUuidMorphs('morph');
+                $table->uuid('user_id')->nullable();
                 $table->string('code');
                 $table->string('key');
                 $table->text('value')->nullable();
@@ -48,6 +49,8 @@ class CreateWkMorphImageTable extends Migration
                     ->on(config('wk-core.table.user'))
                     ->onDelete('set null')
                     ->onUpdate('cascade');
+
+                $table->primary('id');
             });
         }
     }

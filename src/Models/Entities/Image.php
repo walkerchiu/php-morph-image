@@ -2,10 +2,10 @@
 
 namespace WalkerChiu\MorphImage\Models\Entities;
 
-use WalkerChiu\Core\Models\Entities\Entity;
 use WalkerChiu\Core\Models\Entities\LangTrait;
+use WalkerChiu\Core\Models\Entities\UuidEntity;
 
-class Image extends Entity
+class Image extends UuidEntity
 {
     use LangTrait;
 
@@ -86,7 +86,7 @@ class Image extends Entity
     /**
      * Get all of the comments for the image.
      *
-     * @param Int $user_id
+     * @param String $user_id
      * @return \Illuminate\Database\Eloquent\Relations\MorphMany
      */
     public function comments($user_id = null) {

@@ -23,7 +23,7 @@ class ImageRepository extends Repository
 
     /**
      * @param String  $host_type
-     * @param Int     $host_id
+     * @param String  $host_id
      * @param String  $code
      * @param Array   $data
      * @param Int     $page
@@ -195,7 +195,7 @@ class ImageRepository extends Repository
 
     /**
      * @param FormData $fileSource
-     * @param Int      $id
+     * @param String   $id
      * @param Int      $order
      * @return String
      */
@@ -215,7 +215,7 @@ class ImageRepository extends Repository
     /**
      * @param String   $directory
      * @param FormData $fileSource
-     * @param Int      $id
+     * @param String   $id
      * @param Int      $order
      * @return String
      */
@@ -229,14 +229,14 @@ class ImageRepository extends Repository
     }
 
     /**
-     * @param Image|Int|Array $data
+     * @param Image|String|Array $data
      * @return Boolean
      */
     public function removeImage($data)
     {
         $class = config('wk-core.class.morph-image.image');
         if ($data instanceOf $class) return (Boolean) $data->delete();
-        elseif (is_integer($data))   return (Boolean) $this->deleteByIds([$data]);
+        elseif (is_string($data))    return (Boolean) $this->deleteByIds([$data]);
         elseif (is_array($data))     return (Boolean) $this->deleteByIds($data);
     }
 }
