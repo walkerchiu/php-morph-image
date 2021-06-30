@@ -107,6 +107,10 @@ class ImageObserver
      */
     public function deleted($entity)
     {
+        if (!config('php-morph-image.soft_delete')) {
+            $entity->forceDelete();
+        }
+
         if ($entity->isForceDeleting()) {
             $entity->langs->withTrashed()->forceDelete();
             if ( config('wk-morph-image.onoff.morph-comment') && !empty(config('wk-core.class.morph-comment.comment')) ) {
