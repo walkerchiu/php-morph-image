@@ -108,6 +108,12 @@ class ImageObserver
     public function deleted($entity)
     {
         if (!config('php-morph-image.soft_delete')) {
+            /**
+             * To Do:
+             * 
+             * Delete file here.
+             */
+
             $entity->forceDelete();
         }
 
