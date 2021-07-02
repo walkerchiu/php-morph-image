@@ -120,9 +120,7 @@ class ImageObserver
         if ($entity->isForceDeleting()) {
             $entity->langs->withTrashed()->forceDelete();
             if ( config('wk-morph-image.onoff.morph-comment') && !empty(config('wk-core.class.morph-comment.comment')) ) {
-                foreach ($entity->comments as $comment) {
-                    $comment->detach();
-                }
+                $entity->comments->withTrashed()->forceDelete();
             }
         }
     }
