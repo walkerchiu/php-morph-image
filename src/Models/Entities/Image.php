@@ -30,6 +30,7 @@ class Image extends UuidEntity
             'type', 'size',
             'data',
             'options',
+            'order',
             'is_visible'
         ]);
 
